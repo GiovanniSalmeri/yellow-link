@@ -32,7 +32,7 @@ class YellowLink {
                 if ($target[0]!=="/") $target = "/".$target;
                 if (preg_match('/\.(\w+)$/', $target, $matches)) { // is a download
                     $path = $this->yellow->lookup->findMediaDirectory("coreDownloadLocation");
-                    $fileNames = $this->yellow->toolbox->getDirectoryEntriesRecursive($path, "/\\./", false, false, 10);
+                    $fileNames = $this->yellow->toolbox->getDirectoryEntriesRecursive($path, "/\\./", false, false);
                     $found = false;
                     foreach ($fileNames as $fileName) {
                         if (substr($fileName, -strlen($target))==$target) {
