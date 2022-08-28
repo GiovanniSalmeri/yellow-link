@@ -1,5 +1,5 @@
 <?php
-// Link extension, https://github.com/GiovanniSalmeri/yellow-flink
+// Link extension, https://github.com/GiovanniSalmeri/yellow-link
 
 class YellowLink {
     const VERSION = "0.8.20";
