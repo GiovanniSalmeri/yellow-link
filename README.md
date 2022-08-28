@@ -47,12 +47,12 @@ Creating an external link:
 
 The following settings can be configured in file `system/extensions/yellow-system.ini`:
 
-`LinkCacheLifeSpan` (default: `30`) = lifespan (in days) of the cache of size and availability of external pages and files  
-`LinkRemoteFilesTimeout` (default: `4`) = maximum time (in seconds) allowed to get informations form external pages and files  
+`LinkCacheLifeSpan` (default: `30`) = lifespan (in days) of the cache  
+`LinkRemoteFilesTimeout` (default: `4`) = maximum time (in seconds) allowed to get informations  
 
 ## Installation
 
-[Download extension](https://github.com/GiovanniSalmeri/yellow-link /archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
+[Download extension](https://github.com/GiovanniSalmeri/yellow-link/archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
 
 ## Developer
 
