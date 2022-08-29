@@ -28,9 +28,9 @@ class YellowLink {
                     $output = $this->makeLink($target, $label, $fileSize==-2);
                 }
             } else { // is internal
-                if (empty($label)) $label = $target;
                 if ($target[0]!=="/") $target = "/".$target;
                 if (preg_match('/\.(\w+)$/', $target, $matches)) { // is a download
+                    if (empty($label)) $label = $target;
                     $path = $this->yellow->lookup->findMediaDirectory("coreDownloadLocation");
                     $fileNames = $this->yellow->toolbox->getDirectoryEntriesRecursive($path, "/\\./", false, false);
                     $found = false;
