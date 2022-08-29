@@ -104,6 +104,7 @@ class YellowLink {
             curl_exec($curl);
             if (curl_getinfo($curl, CURLINFO_RESPONSE_CODE)!==200) {
                 $fileSize = -2;
+                $fileMimeType = null;
             } else {
                 $fileSize = curl_getinfo($curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
                 $fileMimeType = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
