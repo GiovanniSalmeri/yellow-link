@@ -83,12 +83,12 @@ class YellowLink {
         $fileHandle = @fopen($fileName, "r");
         if ($fileHandle) {
             while ($data = fgetcsv($fileHandle)) {
-                $cache[$data[0]] = [ $data[1], $data[2] ];
+                $cache[$data[0]] = [ $data[1], $data[2], $data[3] ];
             }
             fclose($fileHandle);
         }
         $cacheLifeSpan = $this->yellow->system->get("linkCacheLifeSpan");
-        if (!isset($cache[$address]) || $cache[$address][1]!==0 && $cache[$address][1]+$cacheLifeSpan*86400<time()) {
+        if (!isset($cache[$address]) || $cache[$address][1]!==0 && $cache[$address][0]+$cacheLifeSpan*86400<time()) {
             $remoteFilesTimeout = $this->yellow->system->get("linkRemoteFilesTimeout");
             $curl = curl_init();
             curl_setopt_array($curl, [
@@ -106,13 +106,14 @@ class YellowLink {
                 $fileSize = -2;
             } else {
                 $fileSize = curl_getinfo($curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+                $fileMimeType = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
             }
-            $cache[$address] = [ $fileSize, time() ];
+            $cache[$address] = [ time(), $fileSize, $fileMimeType ];
             $fileHandle = @fopen($fileName, "w");
             if ($fileHandle) {
                 if (flock($fileHandle, LOCK_EX)) {
                     foreach ($cache as $key=>$value) {
-                        fputcsv($fileHandle, [ $key, $value[0], $value[1] ]);
+                        fputcsv($fileHandle, [ $key, $value[0], $value[1], $value[2] ]);
                     }
                     flock($fileHandle, LOCK_UN);
                 }
@@ -121,7 +122,7 @@ class YellowLink {
                 $this->yellow->log("error", "Can't write file '$fileName'!");
             }
         }
-        return (int)$cache[$address][0];
+        return (int)$cache[$address][1];
     }
 
     // Make the link
