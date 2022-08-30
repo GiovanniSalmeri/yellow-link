@@ -4,7 +4,7 @@ Internal and external links.
 
 <p align="center"><img src="link-screenshot.png?raw=true" width="795" height="836" alt="Screenshot"></p>
 
-## How to create an internal link
+## How to add a link
 
 Create a `[link]` shortcut. 
 
@@ -17,7 +17,7 @@ Internal links work no matter what is the subdirectory where the page or the fil
 
 ## Examples
 
-Creating an internal link:
+Adding an internal link:
 
 ```
 [link somepage]  
@@ -26,7 +26,7 @@ Creating an internal link:
 [link somefile.pdf "An interesting reading"]
 ```
 
-Creating an internal link to different pages with the same slug or to different files with the same name:
+Adding an internal link to different pages with the same slug or to different files with the same name:
 
 ```
 [link path/to/somepage]  
@@ -35,7 +35,7 @@ Creating an internal link to different pages with the same slug or to different 
 [link anotherpath/to/somefile]  
 ```
 
-Creating an external link:
+Adding an external link:
 
 ```
 [link https://example.com/somepage "An example page"]  
