@@ -31,8 +31,8 @@ Adding an internal link to different pages with the same slug or to different fi
 ```
 [link path/to/somepage]  
 [link anotherpath/to/somepage]  
-[link path/to/somefile]  
-[link anotherpath/to/somefile]  
+[link path/to/somefile.pdf]  
+[link anotherpath/to/somefile.pdf]  
 ```
 
 Adding an external link:
