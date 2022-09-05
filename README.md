@@ -2,7 +2,7 @@ Link extension 0.8.20
 =====================
 Internal and external links.
 
-<p align="center"><img src="link-screenshot.png?raw=true" width="795" height="836" alt="Screenshot"></p>
+<p align="center"><img src="link-screenshot.png?raw=true" alt="Screenshot"></p>
 
 ## How to add a link
 
