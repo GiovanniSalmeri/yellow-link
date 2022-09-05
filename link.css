@@ -1,6 +1,6 @@
 /* Link extension, https://github.com/GiovanniSalmeri/yellow-link */
 
-.content a[href^="http://"]::after, .content a[href^="https://"]::after {
+.content a.link-external::after {
     content: "\2197\FE0E"; /* \FE0E tries preventing the emoji in iOS */
 }
 .content a span.link-filetype {

@@ -23,9 +23,9 @@ class YellowLink {
                 $fileSize = $this->remoteSize($target);
                 if (preg_match('/\.(\w+)$/', $path, $matches) && !in_array($matches[1], [ "html", "htm", "txt" ])) { // is a download (very naive)
                     $fileType = strtolower($matches[1]);
-                    $output = $this->makeLink($target, $label, $fileSize==-2, $fileType, $fileSize==-2 ? null : $fileSize);
+                    $output = $this->makeLink($target, $label, true, $fileSize==-2, $fileType, $fileSize==-2 ? null : $fileSize);
                 } else { // is not a download
-                    $output = $this->makeLink($target, $label, $fileSize==-2);
+                    $output = $this->makeLink($target, $label, true, $fileSize==-2);
                 }
             } else { // is internal
                 if ($target[0]!=="/") $target = "/".$target;
@@ -45,10 +45,10 @@ class YellowLink {
                         $fileSize = filesize($fileName);
                         $fileName = substr($fileName, strlen($path));
                         $location = $this->yellow->system->get("CoreDownloadLocation").$fileName;
-                        $output = $this->makeLink($location, $label, false, $fileType, $fileSize);
+                        $output = $this->makeLink($location, $label, false, false, $fileType, $fileSize);
                     } else {
                         $location = $this->yellow->system->get("CoreDownloadLocation").substr($target, 1);
-                        $output = $this->makeLink($location, $label, true);
+                        $output = $this->makeLink($location, $label, false, true);
                     }
                 } else { // is not a download
                     list($slug, $fragment) = $this->yellow->toolbox->getTextList($target, "#", 2);
@@ -66,7 +66,7 @@ class YellowLink {
                     } else {
                         $slug = substr($slug, 1);
                         if (empty($label)) $label = $slug;
-                        $output = $this->makeLink($slug, $slug, true);
+                        $output = $this->makeLink($slug, $slug, false, true);
                     }
                 }
             }
@@ -127,8 +127,12 @@ class YellowLink {
     }
 
     // Make the link
-    private function makeLink($link, $label, $missing = false, $fileType = null, $fileSize = null) {
-        $output = "<a".($missing ? " class=\"link-missing\"" : "")." href=\"".htmlspecialchars($link)."\">".htmlspecialchars($label);
+    private function makeLink($link, $label, $external = false, $missing = false, $fileType = null, $fileSize = null) {
+	$classList = [];
+        if ($external) $classList[] = "link-external";
+        if ($missing) $classList[] = "link-missing";
+	$className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
+        $output = "<a".$className." href=\"".htmlspecialchars($link)."\">".htmlspecialchars($label);
         if ($fileType) {
             $output .= " (<span class=\"link-filetype\">".htmlspecialchars($fileType)."</span>".($fileSize ? " <span class=\"link-filesize>".$this->readableSize($fileSize)."</span>" : "").")";
         }
