@@ -52,7 +52,7 @@ The following settings can be configured in file `system/extensions/yellow-syste
 
 ## Installation
 
-[Download extension](https://github.com/GiovanniSalmeri/yellow-link/archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
+[Download extension](https://github.com/GiovanniSalmeri/yellow-link/archive/main.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
 
 ## Developer
 
