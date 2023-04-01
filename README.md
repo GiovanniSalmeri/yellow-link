@@ -4,6 +4,10 @@ Internal and external links.
 
 <p align="center"><img src="link-screenshot.png?raw=true" alt="Screenshot"></p>
 
+## How to install an extension
+
+[Download ZIP file](https://github.com/GiovanniSalmeri/yellow-link/archive/main.zip) and copy it into your `system/extensions` folder. [Learn more about extensions](https://github.com/annaesvensson/yellow-update).
+
 ## How to add a link
 
 Create a `[link]` shortcut. 
@@ -50,10 +54,6 @@ The following settings can be configured in file `system/extensions/yellow-syste
 `LinkCacheLifeSpan` (default: `30`) = lifespan (in days) of the cache  
 `LinkRemoteFilesTimeout` (default: `4`) = maximum time (in seconds) allowed to get informations  
 
-## Installation
-
-[Download extension](https://github.com/GiovanniSalmeri/yellow-link/archive/main.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
-
 ## Developer
 
-Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/)
+Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/).
