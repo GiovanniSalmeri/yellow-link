@@ -18,7 +18,7 @@ class YellowLink {
         if ($name=="link" && $type=="inline") {
             list($target, $label) = $this->yellow->toolbox->getTextArguments($text);
             if (preg_match("/^\w+:/", $target)) { // is external
-                if (empty($label)) $label = $target;
+                if (is_string_empty($label)) $label = $target;
                 $path = parse_url($target, PHP_URL_PATH);
                 $fileSize = $this->remoteSize($target);
                 if (preg_match('/\.(\w+)$/', $path, $matches) && !in_array($matches[1], [ "html", "htm", "txt" ])) { // is a download (very naive)
@@ -30,7 +30,7 @@ class YellowLink {
             } else { // is internal
                 if ($target[0]!=="/") $target = "/".$target;
                 if (preg_match('/\.(\w+)$/', $target, $matches)) { // is a download
-                    if (empty($label)) $label = substr($target, 1);
+                    if (is_string_empty($label)) $label = substr($target, 1);
                     $path = $this->yellow->lookup->findMediaDirectory("coreDownloadLocation");
                     $fileNames = $this->yellow->toolbox->getDirectoryEntriesRecursive($path, "/\\./", false, false);
                     $found = false;
@@ -56,7 +56,7 @@ class YellowLink {
                     foreach ($this->yellow->content->index(true) as $page) {
                         $location = $page->getLocation(true);
                         if (substr(rtrim($location, "/"), -strlen($slug))==$slug) {
-                            if (empty($label)) $label = $page->get("title");
+                            if (is_string_empty($label)) $label = $page->get("title");
                             $found = true;
                             break;
                         }
@@ -65,7 +65,7 @@ class YellowLink {
                         $output = $this->makeLink($location.($fragment ? "#$fragment" : ""), $label);
                     } else {
                         $slug = substr($slug, 1);
-                        if (empty($label)) $label = $slug;
+                        if (is_string_empty($label)) $label = $slug;
                         $output = $this->makeLink($slug, $slug, false, true);
                     }
                 }
@@ -94,7 +94,7 @@ class YellowLink {
             curl_setopt_array($curl, [
                 CURLOPT_URL=>$address,
                 CURLOPT_SSL_VERIFYPEER=>false, // speed up
-                CURLOPT_USERAGENT=>$_SERVER['HTTP_USER_AGENT'], // for paranoid servers
+                CURLOPT_USERAGENT=>$this->yellow->toolbox->getServer('HTTP_USER_AGENT'), // for paranoid servers
                 CURLOPT_FOLLOWLOCATION=>true,
                 CURLOPT_RETURNTRANSFER=>true,
                 CURLOPT_HEADER=>true,
