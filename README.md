@@ -14,8 +14,8 @@ Create a `[link]` shortcut.
 
 The following arguments are available, the second is optional:
 
-`target` = the slug (possibly with the #fragment) of the internal page in `content`, or the name of the file in `media/downloads`, or the address of the external page or file  
-`text` = the text to be used in the link (if omitted, for internal pages the title of the page is used), wrap multiple words into quotes  
+`target` = slug (possibly with #fragment) of internal page in `content`, or name of file in `media/downloads`, or address of external page or file  
+`text` = text to be used in link (if omitted, for internal pages the title of the page is used), wrap multiple words into quotes  
 
 Internal links work no matter what is the subdirectory where the page or the file is located. When the target is a file to be downloaded, type and size are automatically shown. Size of remote files is cached in file `system/link.csv`. Dead links are detected.
 
