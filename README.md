@@ -51,8 +51,8 @@ Adding an external link:
 
 The following settings can be configured in file `system/extensions/yellow-system.ini`:
 
-`LinkCacheLifeSpan` (default: `30`) = lifespan (in days) of the cache  
-`LinkRemoteFilesTimeout` (default: `4`) = maximum time (in seconds) allowed to get informations  
+`LinkCacheLifeSpan` = lifespan (in days) of the cache  
+`LinkRemoteFilesTimeout` = maximum time (in seconds) allowed to get informations  
 
 ## Developer
 
