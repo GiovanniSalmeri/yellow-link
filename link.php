@@ -42,9 +42,9 @@ class YellowLink {
             list($target, $label) = $this->yellow->toolbox->getTextArguments($text);
             if (preg_match("/^\w+:/", $target)) { // is external
                 if (is_string_empty($label)) $label = $target;
-                $path = parse_url($target, PHP_URL_PATH);
                 $fileSize = $this->remoteSize($target);
-                if (preg_match('/\.(\w+)$/', $path, $matches) && !in_array($matches[1], [ "html", "htm", "txt" ])) { // is a download (very naive)
+                $path = parse_url($target, PHP_URL_PATH);
+                if (is_string($path) && preg_match('/\.(\w+)$/', $path, $matches) && !in_array($matches[1], [ "html", "htm", "txt" ])) { // is a download (very naive)
                     $fileType = strtolower($matches[1]);
                     $output = $this->makeLink($target, $label, true, $fileSize==-2, $fileType, $fileSize==-2 ? null : $fileSize);
                 } else { // is not a download
