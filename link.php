@@ -38,7 +38,7 @@ class YellowLink {
     // Handle page content of shortcut
     public function onParseContentShortcut($page, $name, $text, $type) {
         $output = null;
-        if ($name=="link" && $type=="inline") {
+        if ($name=="link" && ($type=="block" || $type=="inline")) {
             list($target, $label) = $this->yellow->toolbox->getTextArguments($text);
             if (preg_match("/^\w+:/", $target)) { // is external
                 if (is_string_empty($label)) $label = $target;
