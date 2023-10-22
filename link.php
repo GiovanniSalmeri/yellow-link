@@ -143,7 +143,7 @@ class YellowLink {
                 }
                 fclose($fileHandle);
             } else {
-                $this->yellow->log("error", "Can't write file '$fileName'!");
+                $this->toolbox->log("error", "Can't write file '$fileName'!");
             }
         }
         return (int)$cache[$address][1];
