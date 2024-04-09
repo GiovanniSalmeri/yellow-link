@@ -1,4 +1,4 @@
-Link extension 0.8.20
+Link extension 0.9.1
 =====================
 Internal and external links.
 
