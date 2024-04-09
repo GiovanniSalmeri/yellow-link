@@ -10,7 +10,7 @@ class YellowLink {
         $this->yellow = $yellow;
         $this->yellow->system->setDefault("linkCacheLifeSpan", "30");
         $this->yellow->system->setDefault("linkRemoteFilesTimeout", "4");
-        $this->yellow->language->setDefaults([
+        $this->yellow->language->setDefaults(array(
             "Language: it",
             "LinkDigitalUnit: B",
             "LinkDeadLink: collegamento interrotto",
@@ -32,7 +32,7 @@ class YellowLink {
             "Language: pt",
             "LinkDigitalUnit: B",
             "LinkDeadLink: ligação inativa",
-        ]);
+        ));
     }
 
     // Handle page content of shortcut
