@@ -2,9 +2,9 @@
 // Link extension, https://github.com/GiovanniSalmeri/yellow-link
 
 class YellowLink {
-    const VERSION = "0.8.20";
+    const VERSION = "0.9.1";
     public $yellow;         //access to API
-    
+
     // Handle initialisation
     public function onLoad($yellow) {
         $this->yellow = $yellow;
@@ -34,9 +34,9 @@ class YellowLink {
             "LinkDeadLink: ligação inativa",
         ));
     }
-    
+
     // Handle page content of shortcut
-    public function onParseContentShortcut($page, $name, $text, $type) {
+    public function onParseContentElement($page, $name, $text, $attributes, $type) {
         $output = null;
         if ($name=="link" && $type=="inline") {
             list($target, $label) = $this->yellow->toolbox->getTextArguments($text);
@@ -102,7 +102,7 @@ class YellowLink {
         $cache = [];
         // format: address,filesize,timestamp
         // the cache can be manually edited; a timestamp 0 prevents updating
-        $fileName = $this->yellow->system->get("coreExtensionDirectory")."link.csv";
+        $fileName = $this->yellow->system->get("coreWorkerDirectory")."link.csv";
         $fileHandle = @fopen($fileName, "r");
         if ($fileHandle) {
             while ($data = fgetcsv($fileHandle)) {
@@ -143,7 +143,7 @@ class YellowLink {
                 }
                 fclose($fileHandle);
             } else {
-                $this->toolbox->log("error", "Can't write file '$fileName'!");
+                $this->yellow->page->error(500, "Can't write file '$fileName'!");
             }
         }
         return (int)$cache[$address][1];
@@ -151,10 +151,10 @@ class YellowLink {
 
     // Make the link
     private function makeLink($link, $label, $external = false, $missing = false, $fileType = null, $fileSize = null) {
-	$classList = [];
+    $classList = [];
         if ($external) $classList[] = "link-external";
         if ($missing) $classList[] = "link-missing";
-	$className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
+    $className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
         $output = "<a".$className." href=\"".htmlspecialchars($link)."\">".htmlspecialchars($label);
         if ($fileType) {
             $output .= " (<span class=\"link-filetype\">".htmlspecialchars($fileType)."</span>".($fileSize ? " <span class=\"link-filesize>".$this->readableSize($fileSize)."</span>" : "").")";
