@@ -99,10 +99,12 @@ class YellowLink {
 
     // Check for existence and get size of remote files
     private function remoteSize($address) {
-        $cache = [];
         // format: address,filesize,timestamp
         // the cache can be manually edited; a timestamp 0 prevents updating
-        $fileName = $this->yellow->system->get("coreWorkerDirectory")."link.csv";
+        $cache = [];
+        $cacheDirectory = $this->yellow->system->get("coreCacheDirectory");
+        if ($cacheDirectory!=="" && !is_dir($cacheDirectory)) @mkdir($cacheDirectory, 0777, true);
+        $fileName = $cacheDirectory."link.csv";
         $fileHandle = @fopen($fileName, "r");
         if ($fileHandle) {
             while ($data = fgetcsv($fileHandle)) {
@@ -176,8 +178,8 @@ class YellowLink {
     public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
-            $extensionLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreExtensionLocation");
-            $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$extensionLocation}link.css\" />\n";
+            $assetLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreAssetLocation");
+            $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$assetLocation}link.css\" />\n";
         }
         return $output;
     }

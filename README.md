@@ -1,5 +1,5 @@
-Link extension 0.9.1
-=====================
+# Link 0.9.1
+
 Internal and external links.
 
 <p align="center"><img src="SCREENSHOT.png" alt="Screenshot"></p>
@@ -17,7 +17,7 @@ The following arguments are available, the second is optional:
 `target` = slug (possibly with #fragment) of internal page in `content`, or name of file in `media/downloads`, or address of external page or file  
 `text` = text to be used in link (if omitted, for internal pages the title of the page is used), wrap multiple words into quotes  
 
-Internal links work no matter what is the subdirectory where the page or the file is located. When the target is a file to be downloaded, type and size are automatically shown. Size of remote files is cached in file `system/link.csv`. Dead links are detected.
+Internal links work no matter what is the subdirectory where the page or the file is located. When the target is a file to be downloaded, type and size are automatically shown. Size of remote files is cached in file `system/cache/link.csv`. Dead links are detected.
 
 ## Examples
 
