@@ -153,7 +153,7 @@ class YellowLink {
 
     // Make the link
     private function makeLink($link, $label, $external = false, $missing = false, $fileType = null, $fileSize = null) {
-    $classList = [];
+        $classList = [];
         if ($external) $classList[] = "link-external";
         if ($missing) $classList[] = "link-missing";
     $className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
