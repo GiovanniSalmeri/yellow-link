@@ -156,7 +156,7 @@ class YellowLink {
         $classList = [];
         if ($external) $classList[] = "link-external";
         if ($missing) $classList[] = "link-missing";
-    $className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
+        $className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
         $output = "<a".$className." href=\"".htmlspecialchars($link)."\">".htmlspecialchars($label);
         if ($fileType) {
             $output .= " (<span class=\"link-filetype\">".htmlspecialchars($fileType)."</span>".($fileSize ? " <span class=\"link-filesize>".$this->readableSize($fileSize)."</span>" : "").")";
