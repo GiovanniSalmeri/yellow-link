@@ -157,10 +157,10 @@ class YellowLink {
         $classList = [];
         $targetList = [];
         if ($external) $classList[] = "link-external";
-        if ($external) $targetList[] = $this->yellow->system->get("linkTarget");
+        if ($external) $targetList[] = $this->yellow->system->get("linkExternalTarget");
         if ($missing) $classList[] = "link-missing";
         $className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
-        $targetName = $targetList ? " target=\"".implode(" ", $targetList)."\"" : "";
+        $targetName = $targetList ? " target=\"".implode(" ", $targetList)."\" rel=\"noopener\"" : "";
         $output = "<a".$className." href=\"".htmlspecialchars($link)."\"".$targetName.">".htmlspecialchars($label);
         if ($fileType) {
             $output .= " (<span class=\"link-filetype\">".htmlspecialchars($fileType)."</span>".($fileSize ? " <span class=\"link-filesize>".$this->readableSize($fileSize)."</span>" : "").")";
