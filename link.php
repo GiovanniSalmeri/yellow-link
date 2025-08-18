@@ -10,7 +10,7 @@ class YellowLink {
         $this->yellow = $yellow;
         $this->yellow->system->setDefault("linkCacheLifeSpan", "30");
         $this->yellow->system->setDefault("linkRemoteFilesTimeout", "4");
-        $this->yellow->system->setDefault("linkExternalTarget", "_blank");
+        $this->yellow->system->setDefault("linkExternalTarget", "_blank"); // `LinkExternalTarget: 0` disables target feature
         $this->yellow->language->setDefaults(array(
             "Language: it",
             "LinkDigitalUnit: B",
@@ -157,7 +157,7 @@ class YellowLink {
         $classList = [];
         $targetList = [];
         if ($external) $classList[] = "link-external";
-        if ($external) $targetList[] = $this->yellow->system->get("linkExternalTarget");
+        if ($external && $this->yellow->system->get("linkExternalTarget")!=="0") $targetList[] = $this->yellow->system->get("linkExternalTarget");
         if ($missing) $classList[] = "link-missing";
         $className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
         $targetName = $targetList ? " target=\"".implode(" ", $targetList)."\" rel=\"noopener\"" : "";
