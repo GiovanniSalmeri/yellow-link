@@ -10,6 +10,7 @@ class YellowLink {
         $this->yellow = $yellow;
         $this->yellow->system->setDefault("linkCacheLifeSpan", "30");
         $this->yellow->system->setDefault("linkRemoteFilesTimeout", "4");
+        $this->yellow->system->setDefault("linkExternalTarget", "_blank"); // `LinkExternalTarget: 0` disables target feature
         $this->yellow->language->setDefaults(array(
             "Language: it",
             "LinkDigitalUnit: B",
@@ -154,10 +155,13 @@ class YellowLink {
     // Make the link
     private function makeLink($link, $label, $external = false, $missing = false, $fileType = null, $fileSize = null) {
         $classList = [];
+        $targetList = [];
         if ($external) $classList[] = "link-external";
+        if ($external && $this->yellow->system->get("linkExternalTarget")!=="0") $targetList[] = $this->yellow->system->get("linkExternalTarget");
         if ($missing) $classList[] = "link-missing";
         $className = $classList ? " class=\"".implode(" ", $classList)."\"" : "";
-        $output = "<a".$className." href=\"".htmlspecialchars($link)."\">".htmlspecialchars($label);
+        $targetName = $targetList ? " target=\"".implode(" ", $targetList)."\" rel=\"noopener\"" : "";
+        $output = "<a".$className." href=\"".htmlspecialchars($link)."\"".$targetName.">".htmlspecialchars($label);
         if ($fileType) {
             $output .= " (<span class=\"link-filetype\">".htmlspecialchars($fileType)."</span>".($fileSize ? " <span class=\"link-filesize>".$this->readableSize($fileSize)."</span>" : "").")";
         }
