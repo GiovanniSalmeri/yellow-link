@@ -107,7 +107,7 @@ class YellowLink {
         $fileName = $cacheDirectory."link.csv";
         $fileHandle = @fopen($fileName, "r");
         if ($fileHandle) {
-            while ($data = fgetcsv($fileHandle)) {
+            while (($data = fgetcsv($fileHandle, 0, ",", "\"", "\\"))!==false) {
                 $cache[$data[0]] = [ $data[1], $data[2], $data[3] ];
             }
             fclose($fileHandle);
