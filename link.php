@@ -2,7 +2,7 @@
 // Link extension, https://github.com/GiovanniSalmeri/yellow-link
 
 class YellowLink {
-    const VERSION = "0.9.1";
+    const VERSION = "1.0.0";
     public $yellow;         //access to API
 
     // Handle initialisation
@@ -179,7 +179,7 @@ class YellowLink {
         $output = null;
         if ($name=="header") {
             $assetLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreAssetLocation");
-            $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$assetLocation}link.css\" />\n";
+            $output = "<link rel=\"stylesheet\" media=\"all\" href=\"{$assetLocation}link.css\" />\n";
         }
         return $output;
     }
